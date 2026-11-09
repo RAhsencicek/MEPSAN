@@ -1,0 +1,37 @@
+# MEPSAN Saha Servisi ve Araç Stok Yönetimi - Docker Compose Yapılandırması
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: mepsan_postgres
+    environment:
+      POSTGRES_DB: mepsan_dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - mepsan_pg_dev:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d mepsan_dev"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    container_name: mepsan_api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:5190
+      ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=mepsan_dev;Username=postgres;Password=postgres
+    ports:
+      - "127.0.0.1:5190:5190"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  mepsan_pg_dev:

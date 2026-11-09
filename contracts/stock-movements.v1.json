@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "StockMovementContract",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "productId": { "type": "string" },
+    "productSku": { "type": "string" },
+    "productName": { "type": "string" },
+    "quantity": { "type": "number" },
+    "movementType": { 
+      "type": "string",
+      "enum": ["PURCHASE_RECEIPT", "VEHICLE_TRANSFER", "FIELD_CONSUMPTION", "FIELD_SALE", "REPLACEMENT_RETURN", "DEFECTIVE_RETURN", "INVENTORY_ADJUSTMENT"]
+    },
+    "sourceLocationId": { "type": "string" },
+    "targetLocationId": { "type": "string" },
+    "workOrderId": { "type": "string" },
+    "performedByUserId": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "notes": { "type": "string" }
+  },
+  "required": ["id", "productId", "quantity", "movementType", "performedByUserId", "timestamp"]
+}

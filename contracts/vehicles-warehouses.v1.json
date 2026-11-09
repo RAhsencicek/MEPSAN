@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VehiclesWarehousesContract",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "code": { "type": "string" },
+    "name": { "type": "string" },
+    "type": { "type": "string", "enum": ["CENTRAL_WAREHOUSE", "SERVICE_VEHICLE", "REPAIR_ZONE", "SCRAP_ZONE"] },
+    "plateNumber": { "type": "string" },
+    "assignedTechnicianId": { "type": "string" },
+    "city": { "type": "string" },
+    "isActive": { "type": "boolean" }
+  },
+  "required": ["id", "code", "name", "type", "isActive"]
+}

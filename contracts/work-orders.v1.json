@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WorkOrderContract",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "externalCallCenterId": { "type": "string" },
+    "stationName": { "type": "string" },
+    "city": { "type": "string" },
+    "dispenserModel": { "type": "string" },
+    "faultDescription": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["OPEN", "ASSIGNED", "IN_PROGRESS", "COMPLETED", "CANCELLED"]
+    },
+    "assignedTechnicianId": { "type": "string" },
+    "assignedVehicleId": { "type": "string" },
+    "itemsUsed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "productId": { "type": "string" },
+          "quantity": { "type": "number" },
+          "action": { "type": "string", "enum": ["CONSUMED", "SOLD", "RETURNED_DEFECTIVE"] }
+        }
+      }
+    },
+    "technicianNotes": { "type": "string" },
+    "photoUrl": { "type": "string" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "completedAt": { "type": "string", "format": "date-time" }
+  },
+  "required": ["id", "stationName", "faultDescription", "status", "createdAt"]
+}

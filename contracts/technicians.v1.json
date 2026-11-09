@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TechnicianContract",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "fullName": { "type": "string" },
+    "email": { "type": "string" },
+    "phoneNumber": { "type": "string" },
+    "role": { "type": "string", "enum": ["ADMIN", "DISPATCHER", "WAREHOUSE_MANAGER", "FIELD_TECHNICIAN"] },
+    "assignedVehicleId": { "type": "string" },
+    "region": { "type": "string" },
+    "isActive": { "type": "boolean" }
+  },
+  "required": ["id", "fullName", "role", "isActive"]
+}
